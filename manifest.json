@@ -1,0 +1,8 @@
+{
+  "domain": "roborock",
+  "name": "Roborock",
+  "config_flow": true,
+  "documentation": "https://www.google.com",
+  "requirements": ["pyroborock==1.0.4"],
+  "codeowners": ["@89jd"]
+}
