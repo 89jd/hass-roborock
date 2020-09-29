@@ -10,8 +10,6 @@ from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
-#'192.168.1.7' 'bf8223bd133a11972ccywr' '543caf4ebf27cfd3'
-
 CONFIG_SCHEMA = vol.Schema(
     {
         vol.Required(CONF_NAME): str,

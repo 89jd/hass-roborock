@@ -118,8 +118,22 @@ STATE_CODE_TO_STATE = {
 }
 
 
+async def async_unload_entry(hass, entry) -> None:
+    _LOGGER.info('Unloading')
+    vacuum = hass.data[DATA_KEY][entry.data[CONF_DEVICE_ID]]
+    if vacuum:
+        vacuum.disconnect()
+
+async def async_remove_entry(hass, entry) -> None:
+    _LOGGER.info('Removing')
+    vacuum = hass.data[DATA_KEY][entry.data[CONF_DEVICE_ID]]
+    if vacuum:
+        vacuum.disconnect()
+
 async def async_setup_entry(hass, config, async_add_entities, discovery_info=None):
-    """Set up the Xiaomi vacuum cleaner robot platform."""
+    if DATA_KEY not in hass.data:
+        hass.data[DATA_KEY] = {}
+        
     host = config.data[CONF_HOST]
     token = config.data[CONF_TOKEN]
     name = config.data[CONF_NAME]
@@ -133,6 +147,8 @@ async def async_setup_entry(hass, config, async_add_entities, discovery_info=Non
     # Create handler
     _LOGGER.info("Initializing with host %s (token %s...)", host, token[:5])
     vacuum = Roborock(ip=host, device_id=device_id, token=token, js_dir=js_dir)
+
+    hass.data[DATA_KEY][device_id] = vacuum
 
     mirobo = MiroboVacuum(name, vacuum)
 
@@ -476,7 +492,7 @@ class MiroboVacuum(StateVacuumEntity):
             segments=segments,
         )
 
-    def update(self):
+    async def async_update(self):
         """Fetch state from the device."""
         try:
             state = self._vacuum.status()
