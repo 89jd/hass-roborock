@@ -6,7 +6,6 @@ import os
 
 from miio import DeviceException  # pylint: disable=import-error
 from pyroborock import Roborock
-from tuyapipc import init as tuya_init
 import voluptuous as vol
 
 from homeassistant.components.vacuum import (
@@ -133,20 +132,15 @@ async def async_remove_entry(hass, entry) -> None:
 async def async_setup_entry(hass, config, async_add_entities, discovery_info=None):
     if DATA_KEY not in hass.data:
         hass.data[DATA_KEY] = {}
-        
+
     host = config.data[CONF_HOST]
     token = config.data[CONF_TOKEN]
     name = config.data[CONF_NAME]
     device_id = config.data[CONF_DEVICE_ID]
 
-    js_dir = hass.config.path(".tuya-ipc/")
-    if not os.path.exists(js_dir):
-        os.mkdir(js_dir)
-
-    tuya_init(js_dir)
     # Create handler
     _LOGGER.info("Initializing with host %s (token %s...)", host, token[:5])
-    vacuum = Roborock(ip=host, device_id=device_id, token=token, js_dir=js_dir)
+    vacuum = Roborock(ip=host, device_id=device_id, token=token)
 
     hass.data[DATA_KEY][device_id] = vacuum
 
