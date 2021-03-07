@@ -490,6 +490,9 @@ class MiroboVacuum(XiaomiMiioEntity, StateVacuumEntity):
             self.dnd_state = self._device.dnd_status()
 
             self._available = True
+        except TypeError as exc:
+            # Sometimes it returns None when fetching the device's status. Ignore for now.
+            pass
         except (OSError, DeviceException) as exc:
             if self._available:
                 self._available = False
