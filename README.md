@@ -1,7 +1,9 @@
 # hass-roborock
 Communicates with roborock using Tuya, so can be used alongside roborock app.
-
-To get token from roborock app, run on rooted device (bluestacks / genymotion should work and be the easiest way of doing it):
+  
+Use this guide to get tokens: https://github.com/redphx/roborock-tuya-token
+  
+Another method is running on a rooted device (bluestacks / genymotion should work and be the easiest way of doing it):
 
 ```
 adb exec-out run-as com.roborock.smart find /data/data/com.roborock.smart/files/rr_cache/ | egrep rr_tuya_[0-9] | xargs -n1 adb exec-out run-as com.roborock.smart cat > roborock_details.gz 
