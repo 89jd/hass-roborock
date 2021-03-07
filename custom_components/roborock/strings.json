@@ -2,14 +2,15 @@
   "config": {
     "flow_title": "Roborock Config",
     "step": {
-      "user": {
-        "title": "Connect to your roborock",
-        "description": "Type in the IP, the token, and give it a name",
+      "device": {
+        "title": "Connect to your Roborock",
+        "description": "",
         "data": {
-          "host": "[%key:common::config_flow::data::ip%]",
-          "device_id": "Device ID",
-          "token": "API Token",
-          "name": "Device name"
+          "host": "IP Address",
+          "device_id": "Device ID (devId)",
+          "token": "API Token (localKey)",
+          "name": "Device Name",
+          "model": "Device Model (Optional)"
         }
       }
     },
@@ -17,8 +18,8 @@
       "connect_error": "[%key:common::config_flow::error::cannot_connect%]"
     },
     "abort": {
-      "already_configured": "[%key:common::config_flow::abort::already_configured_device%]",
-      "already_in_progress": "Config flow for this roborock is already in progress."
+      "already_configured": "This device is already configured.",
+      "already_in_progress": "Config flow for this device is already in progress."
     }
   }
 }
