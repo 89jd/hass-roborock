@@ -490,7 +490,7 @@ class MiroboVacuum(XiaomiMiioEntity, StateVacuumEntity):
             self.dnd_state = self._device.dnd_status()
 
             self._available = True
-        except TypeError as exc:
+        except TypeError:
             # Sometimes it returns None when fetching the device's status. Ignore for now.
             pass
         except (OSError, DeviceException) as exc:
@@ -501,6 +501,8 @@ class MiroboVacuum(XiaomiMiioEntity, StateVacuumEntity):
         # Fetch timers separately, see #38285
         try:
             self._timers = self._device.timer()
+        except TypeError:
+            pass
         except DeviceException as exc:
             _LOGGER.debug(
                 "Unable to fetch timers, this may happen on some devices: %s", exc
