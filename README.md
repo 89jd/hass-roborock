@@ -13,9 +13,9 @@ gzip -d roborock_details.gz
 Then token is listed in the JSON structure under "localKey". The device ID is listed under "devId"
 
 In Home Assistant goto HACS -> Integrations. In the upper right corner menu select "Custom Repositories".
-Add the URL of this project  https://github.com/89jd/hass-roborock and choose "Integration" as category.
+Add the URL of this project https://github.com/redphx/hass-roborock and choose "Integration" as category.
 Now restart Home Assistant
-Next goto the Home Assistant -> Configuration -> Integrations and add the Roborock integration and enter a name, the localKey and devID you found and the IP off the Roborock.
+Next goto the Home Assistant -> Configuration -> Integrations and add the Roborock integration and enter a name, the localKey and devId you found and the IP off the Roborock.
 
 The Roborock should now became available as an entity, not a device.
 
