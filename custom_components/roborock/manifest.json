@@ -1,8 +1,9 @@
 {
   "domain": "roborock",
   "name": "Roborock",
+  "version": "0.1.1",
   "config_flow": true,
   "documentation": "https://www.google.com",
-  "requirements": ["git+https://github.com/redphx/pyroborock.git@master#pyroborock==1.10.0"],
+  "requirements": ["git+https://github.com/redphx/pyroborock.git@master#pyroborock==1.1.2"],
   "codeowners": ["@89jd"]
 }
