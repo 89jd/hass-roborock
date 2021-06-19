@@ -4,5 +4,6 @@
   "config_flow": true,
   "documentation": "https://www.google.com",
   "requirements": ["pyroborock==1.0.10"],
+  "version": "1.0",
   "codeowners": ["@89jd"]
 }
